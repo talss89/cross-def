@@ -1,6 +1,6 @@
 {
   "name": "cross-def",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "JSON manifest to C definitions for embedded systems",
   "main": "src/index.js",
@@ -9,5 +9,6 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^11.0.0"
-  }
+  },
+  "bin": "./src/cli.cjs"
 }
