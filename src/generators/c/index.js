@@ -1,8 +1,27 @@
+import path from 'path'
+
 export default () => ({
-    generate(symbols, definitions, config) {
-        let output = config.lang.c.file_header ?? "/* This file is generated automatically. DO NOT EDIT. */";
+    generate(symbols, definitions, config, outputFn) {
+        let output = config.lang.c.file_header ?? "/* This file is generated automatically. DO NOT EDIT. */\n";
         
         output += "\n";
+
+        switch(config.lang.c.include_guard ?? "pragma") {
+            case 'pragma':
+                output += "#pragma once\n\n"
+            break;
+            case 'define':
+                let guard = path.basename(outputFn).toUpperCase().replace(/\W/, '_').replace(/(_H$)/, '') + '__H';
+
+                output += "#ifndef "+guard+"\n#define " + guard + "\n\n"
+                break;
+            default:
+                break;
+        }
+
+        if(config.lang.c.cpp_guard ?? true) {
+            output += "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n"
+        }
 
         definitions.forEach((definition, index) => {
             switch(definition.lang.c.type) {
@@ -16,6 +35,18 @@ export default () => ({
                 output += this.generate_labels(symbols[index], definition, config)
             }
         });
+
+        if(config.lang.c.cpp_guard ?? true) {
+            output += "#ifdef __cplusplus\n}\n#endif\n"
+        }
+
+        switch(config.lang.c.include_guard ?? "pragma") {
+            case 'define':
+                output += "#endif\n"
+                break;
+            default:
+                break;
+        }
 
         return output;
     },

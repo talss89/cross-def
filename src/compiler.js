@@ -25,7 +25,7 @@ export default class Compiler {
 
     compile(lang, fn) {
         let output = '';
-        output = generators[lang]().generate(this.symbols, this.manifest.define, this.manifest.config);
+        output = generators[lang]().generate(this.symbols, this.manifest.define, this.manifest.config, fn);
         fs.writeFileSync(path.resolve(process.cwd(), fn), output);
     }
 
