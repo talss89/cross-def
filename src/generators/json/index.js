@@ -6,11 +6,13 @@ export default () => ({
             switch(definition.lang.json.type) {
                 case 'map':
                 default:
-                    output[definition.lang.json.name] = this.generate_map(symbols[index], definition, config)
+                    if(definition.lang.json.labels) {
+                        output[definition.lang.json.name] = this.generate_label_map(symbols[index], definition, config)
+                    } else {
+                        output[definition.lang.json.name] = this.generate_map(symbols[index], definition, config)
+                    }
                     break;
-                case 'labelmap':
-                    output[definition.lang.json.name] = this.generate_label_map(symbols[index], definition, config)
-                    break;
+                    
             }
         });
 
