@@ -1,6 +1,6 @@
 # `cross-def`
 
-A utility to generate cross-language definitions from a JSON manifest.
+A utility to generate cross-language definitions from a JSON manifest. Built for [CANtastic](https://github.com/talss89/CANtastic), but useful elsewhere too.
 
 This was built to solve the problem of maintaining values for symbols between embedded web apps and firmware. Define symbols once, and `cross-def` will maintain your language definitions for you.
 
