@@ -15,7 +15,8 @@
                     "name": "ct_control_button_t"
                 },
                 "json": {
-                    "type": "labelmap",
+                    "type": "map",
+                    "labels": true,
                     "name": "buttons"
                 }
             },
