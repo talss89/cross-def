@@ -1,9 +1,12 @@
 {
   "name": "cross-def",
-  "version": "1.0.1",
-  "type": "module",
+  "version": "1.1.0",
   "description": "JSON manifest to C definitions for embedded systems",
   "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./compiler": "./src/compiler.js"
+  },
   "repository": "https://github.com/talss89/cross-def",
   "author": "Tom Lawton <tom.lawton@cndu.it>",
   "license": "MIT",
